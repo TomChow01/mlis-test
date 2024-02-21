@@ -227,14 +227,11 @@ class CustomSLM:
                 else:
                     return []
 
-            # Get the top-k tokens for the next token
             tokenisation = self.tokenise(prefix)
             top_tokens = self.top_k_tokens(tokenisation, k)
 
-            # Initialize the list of completions
             completions = []
 
-            # Recursively explore each possible next token
             for token_idx in top_tokens:
                 token = self.tokenizer.decode(token_idx)
                 completion = prefix + ' ' + token if token != '.' else prefix + token
@@ -242,10 +239,8 @@ class CustomSLM:
 
             return completions
 
-        # Perform the recursive completion starting from the given text
         completions = recursive_completion(text, num_tokens - len(text.split()))
 
-        # Sort the completions by their log probabilities in descending order
         completions.sort(key=lambda x: x[1], reverse=True)
 
         # Return the top-n completions
