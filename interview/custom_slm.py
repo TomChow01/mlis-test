@@ -219,31 +219,6 @@ class CustomSLM:
             List[str]: A list of full completions of the text, ranked in order of probability from highest to lowest. Has between 1 and n inclusive elements.
         """
         # pass
-        def recursive_completion(prefix, remaining_tokens):
-            if remaining_tokens == 0:
-                # Check if the prefix ends with a full stop
-                if prefix.endswith('.'):
-                    return [(prefix, self.text_log_probability(prefix))]
-                else:
-                    return []
-
-            tokenisation = self.tokenise(prefix)
-            top_tokens = self.top_k_tokens(tokenisation, k)
-
-            completions = []
-
-            for token_idx in top_tokens:
-                token = self.tokenizer.decode(token_idx)
-                completion = prefix + ' ' + token if token != '.' else prefix + token
-                completions.extend(recursive_completion(completion, remaining_tokens - 1))
-
-            return completions
-
-        completions = recursive_completion(text, num_tokens - len(text.split()))
-
-        completions.sort(key=lambda x: x[1], reverse=True)
-
-        # Return the top-n completions
-        return [completion[0] for completion in completions[:n]]
+                    
     
 
