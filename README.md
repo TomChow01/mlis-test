@@ -6,9 +6,9 @@
 
 Please modify and commit this file to fill in your details below:
 
-Full Name: 
-Student ID:
-Username: 
+Full Name: Tamal Chowdhury
+Student ID: 20561092
+Username: ppxtc2
 
 
 ## Task
